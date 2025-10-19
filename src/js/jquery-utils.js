@@ -42,6 +42,7 @@ class JQueryUtils {
 
             $elements.on(event, safeHandler);
             return true;
+            
         } catch(error){
             ErrorHandler.logError(error, `Event binding: ${event} on ${selector}`);
             return false; 
