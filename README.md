@@ -15,7 +15,7 @@
    engineering-playbook/
    ├── docs/
    │   ├── adrs/          (Architecture Decision Records)
-   │   └── learning-log.md
+   │   └── ADR-XXXX.md
    ├── templates/
    └── README_DEV.md
    ```

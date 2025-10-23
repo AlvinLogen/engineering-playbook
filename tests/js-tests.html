@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript Tests</title>
+    <style>
+        .test-pass {color: green;}
+        .test-fail {color: red;}
+    </style>
+</head>
+<body>
+    <h1>Javascript Tests</h1>
+    <div id="test-results"></div>
+    <script src="../src/js/config.js"></script>
+    <script src="../src/js/utils.js"></script>
+    <script>
+        // Simple Test Framework
+        function runTests() {
+            const results = [];
+            // Test Email Validation
+            try{
+                const validEmail = ValidationUtils.validateEmail('test@example.com');
+                results.push({
+                    name: 'Valid email test', 
+                    pass: validEmail === true
+                });
+            } catch(error){
+                results.push({
+                    name: 'Valid email test',
+                    pass: false, 
+                    error: error.message
+                });
+            }
+
+            try{
+                const invalidEmail = ValidationUtils.validateEmail('invalid-email');
+                results.push({
+                    name: 'Invalid email test',
+                    pass: invalidEmail === false
+                });
+            } catch(error){
+                results.push({
+                    name: 'Invalid email test',
+                    pass: false,
+                    error: error.message
+                });
+            }
+
+            // Display Results
+            const resultsDiv = document.getElementById('test-results');
+            results.forEach( result => {
+                const div = document.createElement('div');
+                div.className = result.pass ? 'test-pass' : 'test-fail';
+                div.textContent = `${result.name}: ${result.pass ? 'PASS' : 'FAIL'}`;
+
+                if(result.error) div.textContent += `(${result.error})`;
+                resultsDiv.appendChild(div);
+            });
+        }
+
+        runTests();
+    </script>
+</body>
+</html>
